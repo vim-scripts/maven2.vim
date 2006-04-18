@@ -1,0 +1,18 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1521
+
+This is a simple compiler plugin to use quickfix with maven2. It sets
+makeprg to "mvn", and sets the errorformat appropriately. Activate
+with "compiler maven2".
+
+Since this expects the pom.xml to be in the current working directory,
+try adding something like the following to your .vimrc:
+
+augroup my-project-X
+  au!
+  autocmd BufNewFile,BufRead    */project/x/*       lcd <directory-containing-pom>
+  autocmd BufNewFile,BufRead    */project/x/*       compiler maven2
+augroup END
+
+Known problems: the compiler output uses a 0-based column number, but vim
+expects a 1-based column, so the cursor is off by one.
+
